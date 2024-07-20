@@ -63,6 +63,11 @@ To use this tool, clone the repository, and follow the setup instructions for bo
    ```bash
    python imageProcessing.py
    ```
+   - Demo:
+   <video width="320" height="240" controls>
+     <source src="/demo_video/imageToSummary.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
    - Press 'c' to capture an image and extract text.
    - Press 'q' to quit the application.
 4. **Text Summarization**:
@@ -72,6 +77,11 @@ To use this tool, clone the repository, and follow the setup instructions for bo
    ```
    - Select the text to summarize on a news article.
    - Use the Chrome extension to summarize text from web pages.
+   - Demo:
+   <video width="320" height="240" controls>
+     <source src="/demo_video/textSummary.mp4" type="video/mp4">
+     Your browser does not support the video tag.
+   </video>
 5. Page Summarization:
    - This feature is not available on Chrome Extension yet but api is ready. So feel free to use it by calling the endpoint.
    ```http

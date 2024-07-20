@@ -63,7 +63,7 @@ To use this tool, clone the repository, and follow the setup instructions for bo
    ```bash
    python imageProcessing.py
    ```
-   - Demo:
+   - Demo: '/demo_video/imageToSummary.mp4'
    <video width="320" height="240" controls>
      <source src="/demo_video/imageToSummary.mp4" type="video/mp4">
      Your browser does not support the video tag.
@@ -77,7 +77,7 @@ To use this tool, clone the repository, and follow the setup instructions for bo
    ```
    - Select the text to summarize on a news article.
    - Use the Chrome extension to summarize text from web pages.
-   - Demo:
+   - Demo: '/demo_video/textSummary.mp4'
    <video width="320" height="240" controls>
      <source src="/demo_video/textSummary.mp4" type="video/mp4">
      Your browser does not support the video tag.

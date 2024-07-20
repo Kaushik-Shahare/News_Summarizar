@@ -1,10 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from newspaper import Article
 from textblob import TextBlob
 import nltk
 from imageToText.app import imageToText
 from transformers import pipeline
 from flask_cors import CORS
+import numpy as np
 
 
 import cv2
@@ -96,6 +97,30 @@ def summarize():
     print(summary)
     return jsonify({'summary': summary, 'length': length})
 
+def process_captured_frame(frame):
+    text = imageToText('captured_image.jpg')
+
+    # Text summerization code here
+    summary = summarizer(text, max_length=200, min_length=120, do_sample=False)[0]['summary_text']
+
+    return summary
+
+@app.route('/process_image', methods=['POST'])
+def process_image():
+    file = request.files['image']
+    npimg = np.fromfile(file, np.uint8)
+    frame = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
+    
+    summary = process_captured_frame(frame)
+    
+    # Return the path or URL of the processed image
+    # For simplicity, returning the file name. In a real scenario, you might upload
+    # the processed image to a static directory or cloud storage and return the URL.
+    return jsonify({'summary': summary})
+
+@app.route('/home', methods=['GET'])
+def home():
+    return render_template('/imageToText/index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

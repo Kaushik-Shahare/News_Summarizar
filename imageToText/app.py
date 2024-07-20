@@ -25,7 +25,7 @@ def imageToText(image_path):
     text = pytesseract.image_to_string(thresh)
 
     # Print the extracted text
-    print("Extracted Text:\n", text)
+    # print("Extracted Text:\n", text)
 
     # Optionally, save the processed image for verification
     # cv2.imwrite('sample1.jpeg', thresh)

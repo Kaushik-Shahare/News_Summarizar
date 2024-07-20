@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Webcam Capture</title>
+  </head>
+  <body>
+    <video id="video" width="640" height="480" autoplay></video>
+    <button id="capture">Capture</button>
+    <script>
+      const video = document.getElementById("video");
+      const captureButton = document.getElementById("capture");
+
+      // Get access to the camera
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices
+          .getUserMedia({ video: true })
+          .then(function (stream) {
+            video.srcObject = stream;
+            video.play();
+          });
+      }
+
+      captureButton.addEventListener("click", function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = 640;
+        canvas.height = 480;
+        const context = canvas.getContext("2d");
+        context.drawImage(video, 0, 0, 640, 480);
+
+        // Convert canvas to an image file
+        canvas.toBlob(function (blob) {
+          const formData = new FormData();
+          formData.append("image", blob, "captured_image.jpg");
+
+          // Send the image file to the server
+          fetch("/process_image", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Success:", data);
+              // Process and display the returned data
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        }, "image/jpeg");
+      });
+    </script>
+  </body>
+</html>

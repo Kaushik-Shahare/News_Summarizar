@@ -19,7 +19,7 @@ def process_captured_frame(frame):
     text = imageToText('captured_image.jpg')
 
     # Text summerization code here
-    summary = summarizer(text, max_length=200, min_length=120, do_sample=False)[0]['summary_text']
+    summary = summarizer(text, max_length=200, min_length=130, do_sample=False)[0]['summary_text']
 
     print("Summary:\n", summary)
 
